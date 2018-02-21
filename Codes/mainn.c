@@ -9,7 +9,7 @@ int main(void)
 		PORTA|=(1<<0);
 		_delay_ms(500);
 		PORTA&=(~(1<<0));
-		_delay_ms(2000);
+		_delay_ms(1500);
     }
 }
 
