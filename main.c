@@ -1,18 +1,17 @@
 #define F_CPU 1000000UL
 #include <avr/io.h>
-#include <util/delay.h>
-#define F_CPU 1000000UL
+#include<util/delay.h>
 int main(void)
-
-{    DDRA = 0b10000000;
-	while(1)
-	{
-		PORTA = 0b10000000;
-		_delay_ms(500);
-		PORTA = 0b00000000 ;
-		_delay_ms(1500);
-		
-		
-	}
-	return 0;
+{
+    DDRA=0b00000111;
+    while (1) 
+    {
+		PORTA=0b00000001;
+		_delay_ms(30000);
+		PORTA=0b00000010;
+		_delay_ms(2000);
+		PORTA=0b00000100;
+		_delay_ms(60000);
+    }
 }
+
