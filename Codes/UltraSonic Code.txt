@@ -1,0 +1,33 @@
+#define trigPin 12
+#define echoPin 13
+#define servoPin 9
+#define DEFAULT_SERVO_POS    0
+#define TRIGGERED_SERVO_POS 90
+#include <Servo.h>
+
+Servo myservo;
+
+void setup() 
+{
+  Serial.begin (9600);
+  pinMode(trigPin, OUTPUT);
+  digitalWrite(trigPin, LOW);
+  pinMode(echoPin, INPUT);
+  myservo.write(DEFAULT_SERVO_POS);
+  myservo.attach(servoPin);
+}
+
+void loop() 
+{
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  long duration = pulseIn(echoPin, HIGH);
+  long distance = (duration/2) / 29.1;
+  Serial.print(distance);
+  Serial.println(" cm");
+  if (distance<=5){
+    myservo.write(TRIGGERED_SERVO_POS);
+  }
+  delay(500);
+}
