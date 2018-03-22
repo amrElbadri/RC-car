@@ -1,19 +1,45 @@
-
+#define  F_CPU 16000000UL
 #include <avr/io.h>
-#define GET_BIT(reg,Index)  ((reg>>Index)&0x01)
+#include <util/delay.h>
+static volatile int pulse = 0;
+int ultra (int echo)
+{
+	PORTC |=(1<<0);
+	PORTC &=~(1<<0);
+	float m;
+	while(echo != 0)
+	{	
+		
+	TCCR1B|=(1<<CS10);//enabling counter
+	
+	}
+	_delay_us(12);
+	PORTC &=~(1<<0);
+	TCCR1B=0;
+	pulse=TCNT1;//count memory is updated to integer
+	m=340*pulse*0.03125*0.000001;
+	if(m<5)
+	{
+		return 1 ;
+	}
+	else
+	return 0 ;
+	TCNT1=0;//resetting the counter memory
+}
 
 int main(void)
 {
-    DDRD=0x00;
-	DDRA=0xff;
+	DDRC=0b11011111;
+	int max ;
+    /* Replace with your application code */
     while (1) 
     {
-		int f=PIND;
-		for(int i=0; i<(f*4); i++)
+		max=ultra(PINC5);
+		if(max==1)
 		{
-			PORTA=0x01;
+			PORTC |=(1<<6);
 		}
-		PORTA=0x00;
+		
     }
 }
 
