@@ -3,6 +3,7 @@
 
 #define SET_BIT(reg,Index)  reg|=(1<<Index)
 #define CLR_BIT(reg,Index)  reg&=(~(1<<Index))
+#define GET_BIT(reg,Index) ((reg>>Index)&0x01)
 #define mRP 0 // Right Postive
 #define mRN 1 // Right Negative
 #define mLP 2 // Left Postive
@@ -11,7 +12,12 @@
 void forward();
 void backward();
 void right();
+void left();
 void stop();
 void Initpwm();
 void Initpwm1();
+void forwardd();
+void backwardd();
+void rightt();
+void leftt();
 #endif
