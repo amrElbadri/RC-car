@@ -59,6 +59,7 @@ int main(void)
 	DDRC&=~(1<<7);//right line tracker
 	DDRC&=~(1<<6);//left line tracker
 	DDRC&=~(1<<5);//middle line tracker
+	DDRC&=~(1<<4);//Motor shaft encoder
 	//GICR|=(1<<INT0);//enabling interrupt0
 	//MCUCR|=(1<<ISC00);//setting interrupt triggering logic change
 	//sei();
@@ -83,10 +84,12 @@ int main(void)
 			case '7': {OCR0=60; OCR2=60; }break;
 			case '8': {OCR0=30; OCR2=30; }break;
 			case '9': {OCR0=0; OCR2=0; }break;
-			case'M': {
-				
+			case'M': { Distance(100);
+				/*
               while (1)
 				{
+					
+					
 					
 					if(GET_BIT(PINC,7)==1&&GET_BIT(PINC,6)==1&&GET_BIT(PINC,5)==0)
 					{
@@ -107,10 +110,6 @@ int main(void)
 					leftt();
 					}
 				}
-				 else if (GET_BIT(PINC,7)==0&&GET_BIT(PINC,6)==0&&GET_BIT(PINC,5)==0)
-				{
-					forwardd();
-				}
 				 else if (GET_BIT(PINC,7)==1&&GET_BIT(PINC,6)==0&&GET_BIT(PINC,5)==0)
 				{
 					leftt();
@@ -119,32 +118,16 @@ int main(void)
 				{
 					rightt();
 				}
-				else if (GET_BIT(PINC,7)==1&&GET_BIT(PINC,6)==1&&GET_BIT(PINC,5)==1) //bug
-				{
-					forwardd();
-				}
-				 else if (GET_BIT(PINC,7)==0&&GET_BIT(PINC,6)==0&&GET_BIT(PINC,5)==1)
-				{
-					forwardd();
-				}
-					/*PORTC|=(1<<PINC0);
-					_delay_us(10);
-					PORTC&=~(1<<PINC0);
-					_delay_ms(100);
-					COUNTA=(double)pulse/932.944;
-					if(COUNTA<7)
-					{
-					PORTC|=(1<<6);
-					}
-					else
-					{
-					PORTC&=~(1<<PINC6);
-					}*/
+			     else {
+					 forwardd();
+				 }*/ 
+					
 					if (UDR=='A'||UDR=='W'||UDR=='S'||UDR=='D'||UDR=='X')
 					{
 						 break;
 					}
-				}
+				// }
+				 
 				
 			
 				     } break;
