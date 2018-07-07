@@ -3,14 +3,15 @@
 #include<util/delay.h>
 int main(void)
 {
-	DDRA=0b00000001;
+    DDRA=0b00000111;
     while (1) 
     {
 		PORTA=0b00000001;
-		_delay_ms(1000);
-		PORTA=0b00000000;
-		_delay_ms(500);
+		_delay_ms(30000);
+		PORTA=0b00000010;
+		_delay_ms(2000);
+		PORTA=0b00000100;
+		_delay_ms(60000);
     }
-	return 0;
 }
 
